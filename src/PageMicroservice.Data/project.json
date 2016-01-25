@@ -1,0 +1,22 @@
+{
+  "version": "1.0.0-*",
+  "description": "PageMicroservice.Data Class Library",
+  "authors": [
+    "iGilga"
+  ],
+  "tags": [
+    ""
+  ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "frameworks": {
+    "dnx451": {}
+  },
+  "dependencies": {
+    "Autofac": "4.0.0-*",
+    "Autofac.Extensions.DependencyInjection": "4.0.0-*",
+    "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+    "Moq": "4.2.1510.2205",
+    "PageMicroservice.Models": "1.0.0-*"
+  }
+}

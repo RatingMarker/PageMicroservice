@@ -35,7 +35,7 @@ namespace PageMicroservice.Data.Repositories
 
         public IEnumerable<Site> GetAll()
         {
-            using (var context = new PageContext())
+            using (var context = contextFactory.Get())
             {
                 return context.Sites.ToList();
             }
@@ -51,17 +51,17 @@ namespace PageMicroservice.Data.Repositories
 
         public Site Add(Site entity)
         {
-            using (var context = new PageContext())
+            using (var context = contextFactory.Get())
             {
-                var site = context.Sites.Add(entity).Entity;
+                var site = context.Sites.Add(entity);
                 context.SaveChanges();
-                return site;
+                return site.Entity;
             }
         }
 
         public void Update(Site entity)
         {
-            using (var context = new PageContext())
+            using (var context = contextFactory.Get())
             {
                 context.Sites.Update(entity);
                 context.SaveChanges();
@@ -70,7 +70,7 @@ namespace PageMicroservice.Data.Repositories
 
         public void Delete(Site entity)
         {
-            using (var context = new PageContext())
+            using (var context = contextFactory.Get())
             {
                 var site = context.Sites.SingleOrDefault(s=>s.SiteId == entity.SiteId);
 

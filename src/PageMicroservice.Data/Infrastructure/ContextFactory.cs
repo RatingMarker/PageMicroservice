@@ -8,20 +8,16 @@ namespace PageMicroservice.Data.Infrastructure
         PageContext Get();
     }
 
-    public class ContextFactory: Disposable, IContextFactory
+    public class ContextFactory: IContextFactory
     {
         private PageContext context;
 
         public PageContext Get()
         {
-            if (context == null)
-            {
-                context = new PageContext();
-            }
-            return context;
+            return context ?? (context = new PageContext());
         }
 
-        protected override void DisposeCore()
+        public void Dispose()
         {
             context?.Dispose();
         }

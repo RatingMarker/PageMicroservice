@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using Nancy;
 using Nancy.ModelBinding;
@@ -13,13 +13,18 @@ namespace PageMicroservice.Api.Controllers
 
         public SiteModule(ISiteService siteService): base("/sites")
         {
+            if (siteService == null)
+            {
+                throw new ArgumentNullException(nameof(siteService));
+            }
+
             this.siteService = siteService;
 
             Get["/"] = _ => siteService.GetAll().ToList();
 
-            Get["/{id}"] = x => siteService.GetById(x.id);
+            Get["/{id}"] = parameter => siteService.GetById(parameter.id) ?? HttpStatusCode.NotFound;
 
-            Post["/"] = x =>
+            Post["/"] = _ =>
             {
                 var site = this.Bind<Site>();
 
@@ -28,24 +33,24 @@ namespace PageMicroservice.Api.Controllers
                 return site;
             };
 
-            Put["/{id}"] = x =>
+            Put["/{id}"] = parameter =>
             {
                 var site = this.Bind<Site>();
 
-                site.SiteId = x.id;
+                site.SiteId = parameter.id;
 
-                siteService.Update(site);
+                bool isUpdated = siteService.Update(site);
 
-                return HttpStatusCode.OK;
+                return isUpdated ? HttpStatusCode.OK : HttpStatusCode.NotFound;
             };
 
-            Delete["/{id}"] = x =>
+            Delete["/{id}"] = parameter =>
             {
-                var site = new Site() {SiteId = x.id};
+                var site = new Site() {SiteId = parameter.id};
 
-                siteService.Remove(site);
+                bool isDeleted = siteService.Remove(site);
 
-                return HttpStatusCode.OK;
+                return isDeleted ? HttpStatusCode.OK : HttpStatusCode.NotFound;
             };
         }
     }

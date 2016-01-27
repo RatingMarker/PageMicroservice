@@ -10,7 +10,8 @@ namespace PageMicroservice.Data
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<ContextFactory>().As<IContextFactory>()
-                   .AsImplementedInterfaces().SingleInstance();
+                   .AsImplementedInterfaces()
+                   .InstancePerLifetimeScope();
 
             builder.RegisterAssemblyTypes(Assembly.Load("PageMicroservice.Data"))
                    .Where(t => t.Name.EndsWith("Repository"))

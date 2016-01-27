@@ -9,8 +9,8 @@ namespace PageMicroservice.Services
         Site GetById(int id);
         IEnumerable<Site> GetAll();
         Site Add(Site site);
-        void Update(Site site);
-        void Remove(Site site);
+        bool Update(Site site);
+        bool Remove(Site site);
     }
 
     public class SiteService: ISiteService
@@ -28,8 +28,8 @@ namespace PageMicroservice.Services
 
         public Site Add(Site site) => siteRepository.Add(site);
 
-        public void Update(Site site) => siteRepository.Update(site);
+        public bool Update(Site site) => siteRepository.Update(site);
 
-        public void Remove(Site site) => siteRepository.Delete(site);
+        public bool Remove(Site site) => siteRepository.Delete(site);
     }
 }

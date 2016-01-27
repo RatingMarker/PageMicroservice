@@ -9,8 +9,8 @@ namespace PageMicroservice.Services
         Page GetById(int id);
         IEnumerable<Page> GetAll();
         Page Add(Page page);
-        void Update(Page page);
-        void Remove(Page page);
+        bool Update(Page page);
+        bool Remove(Page page);
     }
 
     public class PageService: IPageService
@@ -28,8 +28,8 @@ namespace PageMicroservice.Services
 
         public Page Add(Page page) => pageRepository.Add(page);
 
-        public void Update(Page page) => pageRepository.Update(page);
+        public bool Update(Page page) => pageRepository.Update(page);
 
-        public void Remove(Page page) => pageRepository.Delete(page);
+        public bool Remove(Page page) => pageRepository.Delete(page);
     }
 }

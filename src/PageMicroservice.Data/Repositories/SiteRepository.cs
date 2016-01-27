@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using PageMicroservice.Data.Contexts;
 using PageMicroservice.Data.Infrastructure;
 using PageMicroservice.Models;
 
@@ -29,7 +28,7 @@ namespace PageMicroservice.Data.Repositories
         {
             using (var context = contextFactory.Get())
             {
-                return context.Sites.SingleOrDefault(s=>s.SiteId == id);
+                return context.Sites.SingleOrDefault(s => s.SiteId == id);
             }
         }
 
@@ -59,27 +58,43 @@ namespace PageMicroservice.Data.Repositories
             }
         }
 
-        public void Update(Site entity)
+        public bool Update(Site entity)
         {
+            bool isUpdated = false;
+
             using (var context = contextFactory.Get())
             {
-                context.Sites.Update(entity);
-                context.SaveChanges();
+                var tracking = context.Sites.Update(entity);
+                int commit = context.SaveChanges();
+
+                if (commit > 0)
+                {
+                    isUpdated = true;
+                }
             }
+            return isUpdated;
         }
 
-        public void Delete(Site entity)
+        public bool Delete(Site entity)
         {
+            bool isDeleted = false;
+
             using (var context = contextFactory.Get())
             {
-                var site = context.Sites.SingleOrDefault(s=>s.SiteId == entity.SiteId);
+                var site = context.Sites.SingleOrDefault(s => s.SiteId == entity.SiteId);
 
                 if (site != null)
                 {
                     context.Sites.Remove(site);
-                    context.SaveChanges();
+                    int commit = context.SaveChanges();
+
+                    if (commit > 0)
+                    {
+                        isDeleted = true;
+                    }
                 }
             }
+            return isDeleted;
         }
     }
 }

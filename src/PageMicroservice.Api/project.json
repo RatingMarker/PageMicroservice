@@ -3,9 +3,6 @@
     "web": "Microsoft.AspNet.Server.Kestrel",
     "ef": "EntityFramework.Commands"
   },
-  "compilationOptions": {
-    "emitEntryPoint": true
-  },
   "dependencies": {
     "Autofac": "4.0.0-rc1-177",
     "Autofac.Extensions.DependencyInjection": "4.0.0-rc1-177",
@@ -16,8 +13,11 @@
     "Microsoft.AspNet.Server.IIS": "1.0.0-beta7",
     "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final",
     "Moq": "4.2.1510.2205",
-    "nancy": "1.4.3",
-    "PageMicroservice.Services": "1.0.0-*"
+    "Nancy": "1.4.3",
+    "Nancy.Bootstrappers.Autofac": "1.4.1",
+    "PageMicroservice.Services": "1.0.0-*",
+    "Automapper": "4.2.0",
+    "PageMicroservice.Api.Models": "1.0.0-*"
   },
   "exclude": [
     "wwwroot",
@@ -27,8 +27,10 @@
     "dnx451": {}
   },
   "publishExclude": [
+    "**.xproj",
     "**.user",
     "**.vspscc"
   ],
+  "webroot": "wwwroot",
   "version": "1.0.0-*"
 }

@@ -20,9 +20,11 @@ namespace PageMicroservice.Api.Controllers
 
             this.siteService = siteService;
 
-            Get["/"] = _ => siteService.GetAll().ToList();
+            Get["/"] = _ => siteService.GetAll();
 
             Get["/{id}"] = parameter => siteService.GetById(parameter.id) ?? HttpStatusCode.NotFound;
+
+            Get["{id}/pages"] = parameter => siteService.GetPages(parameter.id) ?? HttpStatusCode.NotFound;
 
             Post["/"] = _ =>
             {

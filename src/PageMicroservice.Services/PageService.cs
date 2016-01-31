@@ -11,6 +11,7 @@ namespace PageMicroservice.Services
         Page Add(Page page);
         bool Update(Page page);
         bool Remove(Page page);
+        void Insert(IEnumerable<Page> pages);
     }
 
     public class PageService: IPageService
@@ -31,5 +32,10 @@ namespace PageMicroservice.Services
         public bool Update(Page page) => pageRepository.Update(page);
 
         public bool Remove(Page page) => pageRepository.Delete(page);
+
+        public void Insert(IEnumerable<Page> pages)
+        {
+            pageRepository.Insert(pages);
+        }
     }
 }

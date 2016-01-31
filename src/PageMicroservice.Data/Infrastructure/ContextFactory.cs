@@ -1,4 +1,6 @@
 ﻿using System;
+using Microsoft.Data.Entity;
+using Microsoft.Data.Entity.Infrastructure;
 using PageMicroservice.Data.Contexts;
 
 namespace PageMicroservice.Data.Infrastructure

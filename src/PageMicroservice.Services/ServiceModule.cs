@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 using Autofac;
+using Module = Autofac.Module;
 
 namespace PageMicroservice.Services
 {
-    public class ServiceModule:Module
+    public class ServiceModule: Module
     {
         protected override void Load(ContainerBuilder builder)
         {
-            base.Load(builder);
+            builder.RegisterAssemblyTypes(Assembly.Load("PageMicroservice.Services"))
+                   .Where(t => t.Name.EndsWith("Service"))
+                   .AsImplementedInterfaces()
+                   .InstancePerLifetimeScope();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.Entity;
+using Microsoft.Data.Entity.Infrastructure;
 using PageMicroservice.Data.Configurations;
 using PageMicroservice.Models;
 
@@ -10,9 +11,13 @@ namespace PageMicroservice.Data.Contexts
         {
         }
 
+        public PageContext(DbContextOptions options): base(options)
+        {
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=PageMicroserviceDb;Trusted_Connection=True;";
+            const string connection = @"Server=(localdb)\mssqllocaldb;Database=PageMicroserviceDb;Trusted_Connection=True;";
 
             optionsBuilder.UseSqlServer(connection);
         }

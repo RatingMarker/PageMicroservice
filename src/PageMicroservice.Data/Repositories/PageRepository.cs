@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using Microsoft.Data.Entity;
 using PageMicroservice.Data.Infrastructure;
 using PageMicroservice.Models;
 
@@ -9,6 +10,7 @@ namespace PageMicroservice.Data.Repositories
 {
     public interface IPageRepository: IRepository<Page>
     {
+        void Insert(IEnumerable<Page> pages);
     }
 
     public class PageRepository: IPageRepository
@@ -32,7 +34,8 @@ namespace PageMicroservice.Data.Repositories
         {
             using (var context = contextFactory.Get())
             {
-                return context.Pages.ToList();
+                var pages = context.Pages.Include(x => x.Site).ToList();
+                return pages;
             }
         }
 
@@ -60,6 +63,7 @@ namespace PageMicroservice.Data.Repositories
 
             using (var context = contextFactory.Get())
             {
+                context.Pages.Attach(entity);
                 context.Pages.Update(entity);
                 int commit = context.SaveChanges();
 
@@ -91,6 +95,15 @@ namespace PageMicroservice.Data.Repositories
                 }
             }
             return isDeleted;
+        }
+
+        public void Insert(IEnumerable<Page> pages)
+        {
+            using (var context = contextFactory.Get())
+            {
+                context.AddRange(pages);
+                context.SaveChangesAsync();
+            }
         }
     }
 }

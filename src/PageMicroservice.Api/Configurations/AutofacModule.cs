@@ -8,6 +8,7 @@ namespace PageMicroservice.Api.Configurations
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterModule<AutoMapperModule>();
             builder.RegisterModule<DataModule>();
             builder.RegisterModule<ServiceModule>();
         }

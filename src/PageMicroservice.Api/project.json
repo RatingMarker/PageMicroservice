@@ -1,0 +1,36 @@
+{
+  "commands": {
+    "web": "Microsoft.AspNet.Server.Kestrel",
+    "ef": "EntityFramework.Commands"
+  },
+  "dependencies": {
+    "Autofac": "4.0.0-rc1-177",
+    "Autofac.Extensions.DependencyInjection": "4.0.0-rc1-177",
+    "Entityframework.Commands": "7.0.0-rc1-final",
+    "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+    "Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
+    "Microsoft.AspNet.Owin": "1.0.0-rc1-final",
+    "Microsoft.AspNet.Server.IIS": "1.0.0-beta7",
+    "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final",
+    "Moq": "4.2.1510.2205",
+    "Nancy": "1.4.3",
+    "Nancy.Bootstrappers.Autofac": "1.4.1",
+    "PageMicroservice.Services": "1.0.0-*",
+    "Automapper": "4.2.0",
+    "PageMicroservice.Api.Models": "1.0.0-*"
+  },
+  "exclude": [
+    "wwwroot",
+    "node_modules"
+  ],
+  "frameworks": {
+    "dnx451": {}
+  },
+  "publishExclude": [
+    "**.xproj",
+    "**.user",
+    "**.vspscc"
+  ],
+  "webroot": "wwwroot",
+  "version": "1.0.0-*"
+}

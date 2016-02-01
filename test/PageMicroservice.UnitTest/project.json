@@ -1,0 +1,26 @@
+{
+  "version": "1.0.0-*",
+  "description": "PageMicroservice.UnitTest Class Library",
+  "authors": [
+    "iGilga"
+  ],
+  "tags": [
+    ""
+  ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "frameworks": {
+    "dnx451": {}
+  },
+  "dependencies": {
+    "Nancy.Testing": "1.4.1",
+    "PageMicroservice.Api": "1.0.0-*",
+    "xunit": "2.2.0-beta1-build3239",
+    "xunit.runner.dnx": "2.1.0-rc1-build204",
+    "Moq": "4.2.1510.2205",
+    "Automapper": "4.2.0"
+  },
+  "commands": {
+    "test": "xunit.runner.dnx"
+  }
+}

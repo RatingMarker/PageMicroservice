@@ -15,13 +15,6 @@ namespace PageMicroservice.Data.Contexts
         {
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            const string connection = @"Server=(localdb)\mssqllocaldb;Database=PageMicroserviceDb;Trusted_Connection=True;";
-
-            optionsBuilder.UseSqlServer(connection);
-        }
-
         public DbSet<Site> Sites { get; set; }
         public DbSet<Page> Pages { get; set; }
 

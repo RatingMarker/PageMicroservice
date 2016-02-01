@@ -24,6 +24,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{AF5DA1B1-9
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "PageMicroservice.Data.UnitTest", "test\PageMicroservice.Data.UnitTest\PageMicroservice.Data.UnitTest.xproj", "{990E19BF-B6AD-4548-B855-F0BDFF82BD07}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "PageMicroservice.UnitTest", "test\PageMicroservice.UnitTest\PageMicroservice.UnitTest.xproj", "{5A2C965C-25D9-4E4A-B35F-BDBAF1DADD38}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +56,10 @@ Global
 		{990E19BF-B6AD-4548-B855-F0BDFF82BD07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{990E19BF-B6AD-4548-B855-F0BDFF82BD07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{990E19BF-B6AD-4548-B855-F0BDFF82BD07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A2C965C-25D9-4E4A-B35F-BDBAF1DADD38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A2C965C-25D9-4E4A-B35F-BDBAF1DADD38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A2C965C-25D9-4E4A-B35F-BDBAF1DADD38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A2C965C-25D9-4E4A-B35F-BDBAF1DADD38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,5 +71,6 @@ Global
 		{94B122BE-0FBA-4E24-A5C0-AFA25FC4D221} = {4108D699-0C95-4674-B4B2-A650A732A7DE}
 		{AB8BE541-4137-4905-B8C9-16830741308F} = {4108D699-0C95-4674-B4B2-A650A732A7DE}
 		{990E19BF-B6AD-4548-B855-F0BDFF82BD07} = {AF5DA1B1-96C5-4EB0-82D6-7C7800957474}
+		{5A2C965C-25D9-4E4A-B35F-BDBAF1DADD38} = {AF5DA1B1-96C5-4EB0-82D6-7C7800957474}
 	EndGlobalSection
 EndGlobal

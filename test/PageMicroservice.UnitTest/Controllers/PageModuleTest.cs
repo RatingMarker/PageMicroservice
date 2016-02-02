@@ -77,6 +77,7 @@ namespace PageMicroservice.UnitTest.Controllers
             //arrange
             var url = @"/pages/1";
 
+            mockPageService.Setup(x => x.Update(It.IsAny<Page>())).Returns(true);
             //act
             var result = browser.Put(
                 url,
@@ -90,8 +91,8 @@ namespace PageMicroservice.UnitTest.Controllers
         public void Should_return_status_ok_when_remove_page()
         {
             //arrange
-            var url = @"/pages";
-
+            var url = @"/pages/1";
+            mockPageService.Setup(x => x.Remove(It.IsAny<Page>())).Returns(true);
             //act
             var result = browser.Delete(
                 url,

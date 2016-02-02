@@ -26,7 +26,7 @@ namespace PageMicroservice.Data.Repositories
         {
             using (var context = contextFactory.Get())
             {
-                return context.Pages.SingleOrDefault(x => x.SiteId == id);
+                return context.Pages.SingleOrDefault(x => x.PageId == id);
             }
         }
 
@@ -63,7 +63,6 @@ namespace PageMicroservice.Data.Repositories
 
             using (var context = contextFactory.Get())
             {
-                context.Pages.Attach(entity);
                 context.Pages.Update(entity);
                 int commit = context.SaveChanges();
 

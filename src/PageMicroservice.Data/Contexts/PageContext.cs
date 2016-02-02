@@ -21,6 +21,7 @@ namespace PageMicroservice.Data.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             EntityConfiguration.PageConfig(modelBuilder);
+            EntityConfiguration.SiteConfig(modelBuilder);
         }
     }
 }

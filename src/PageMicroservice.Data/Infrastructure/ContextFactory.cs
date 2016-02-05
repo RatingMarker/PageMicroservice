@@ -16,7 +16,7 @@ namespace PageMicroservice.Data.Infrastructure
 
         public ContextFactory()
         {
-            const string connectString = @"Server=(localdb)\mssqllocaldb;Database=PageMicroserviceDb;Trusted_Connection=True;";
+            const string connectString = @"Server=(localdb)\mssqllocaldb;Database=PageMicroservice;Trusted_Connection=True;";
 
             var optionsBuilder = new DbContextOptionsBuilder<PageContext>();
             optionsBuilder.UseSqlServer(connectString);

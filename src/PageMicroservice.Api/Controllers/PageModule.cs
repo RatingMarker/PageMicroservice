@@ -21,6 +21,10 @@ namespace PageMicroservice.Api.Controllers
             {
                 throw new ArgumentNullException(nameof(pageService));
             }
+            if (mapper == null)
+            {
+                throw new ArgumentNullException(nameof(mapper));
+            }
 
             this.pageService = pageService;
             this.mapper = mapper;
@@ -32,44 +36,40 @@ namespace PageMicroservice.Api.Controllers
                 return pagesViewModel;
             };
 
-            Get["/{id}"] = parameter => pageService.GetById(parameter.id) ?? HttpStatusCode.NotFound;
+            Get["/{id}"] = parameter =>
+            {
+                var page = pageService.GetById(parameter.id);
+                return page != null ? mapper.Map<Page, PageViewModel>(page) : HttpStatusCode.NotFound;
+            };
 
             Post["/"] = _ =>
             {
                 var page = this.Bind<Page>();
-
                 page = pageService.Add(page);
-
-                return page;
+                var pageViewModel = mapper.Map<Page, PageViewModel>(page);
+                return pageViewModel;
             };
 
             Put["/{id}"] = parameter =>
             {
                 var page = this.Bind<Page>();
-
                 page.PageId = parameter.id;
-
                 bool isUpdated = pageService.Update(page);
-
                 return isUpdated ? HttpStatusCode.OK : HttpStatusCode.NotFound;
             };
 
             Delete["/{id}"] = parameter =>
             {
                 var page = new Page() { PageId = parameter.id };
-
                 bool isDeleted = pageService.Remove(page);
-
                 return isDeleted ? HttpStatusCode.OK : HttpStatusCode.NotFound;
             };
 
             Post["/insert"] = _ =>
             {
-                var pages = this.Bind<IEnumerable<Page>>();
-
-                pageService.Insert(pages);
-
-                return HttpStatusCode.OK;
+                //var pages = this.Bind<IEnumerable<Page>>();
+                //pageService.Insert(pages);
+                return HttpStatusCode.NotImplemented;
             };
         }
     }

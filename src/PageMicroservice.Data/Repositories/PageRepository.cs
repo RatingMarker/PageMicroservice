@@ -80,7 +80,7 @@ namespace PageMicroservice.Data.Repositories
 
             using (var context = contextFactory.Get())
             {
-                var site = context.Pages.SingleOrDefault(x => x.SiteId == entity.SiteId);
+                var site = context.Pages.FirstOrDefault(x => x.PageId == entity.PageId);
 
                 if (site != null)
                 {

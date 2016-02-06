@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Microsoft.Data.Entity;
 using PageMicroservice.Data.Infrastructure;
 using PageMicroservice.Models;
 
@@ -48,7 +47,7 @@ namespace PageMicroservice.Data.Repositories
                 return context.Sites.Where(where).ToList();
             }
         }
-         
+
         public Site Add(Site entity)
         {
             using (var context = contextFactory.Get())
@@ -82,7 +81,7 @@ namespace PageMicroservice.Data.Repositories
 
             using (var context = contextFactory.Get())
             {
-                var site = context.Sites.SingleOrDefault(s => s.SiteId == entity.SiteId);
+                var site = context.Sites.FirstOrDefault(s => s.SiteId == entity.SiteId);
 
                 if (site != null)
                 {

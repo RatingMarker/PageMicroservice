@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using PageMicroservice.Data.Repositories;
-using PageMicroservice.Models;
+using PageMicroservice.Api.Models;
+using PageMicroservice.Api.Repositories;
 using PageMicroservice.UnitTest.Fakes;
 using Xunit;
 using Xunit.Runners;

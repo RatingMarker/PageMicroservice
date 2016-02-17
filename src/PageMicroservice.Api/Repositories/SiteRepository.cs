@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using PageMicroservice.Data.Infrastructure;
-using PageMicroservice.Models;
+using PageMicroservice.Api.Infrastructure;
+using PageMicroservice.Api.Models;
 
-namespace PageMicroservice.Data.Repositories
+namespace PageMicroservice.Api.Repositories
 {
     public interface ISiteRepository: IRepository<Site>
     {

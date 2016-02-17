@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using Autofac;
-using PageMicroservice.Data.Infrastructure;
 using Module = Autofac.Module;
 
 namespace PageMicroservice.Data

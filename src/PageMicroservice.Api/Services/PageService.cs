@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using PageMicroservice.Data.Repositories;
-using PageMicroservice.Models;
+using PageMicroservice.Api.Models;
+using PageMicroservice.Api.Repositories;
 
-namespace PageMicroservice.Services
+namespace PageMicroservice.Api.Services
 {
     public interface IPageService
     {

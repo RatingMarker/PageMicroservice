@@ -1,8 +1,8 @@
 ﻿using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Metadata;
-using PageMicroservice.Models;
+using PageMicroservice.Api.Models;
 
-namespace PageMicroservice.Data.Configurations
+namespace PageMicroservice.Api.Infrastructure
 {
     public class EntityConfiguration
     {

@@ -2,9 +2,8 @@
 using System.Linq;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
-using PageMicroservice.Data.Contexts;
-using PageMicroservice.Data.Repositories;
-using PageMicroservice.Models;
+using PageMicroservice.Api.Contexts;
+using PageMicroservice.Api.Models;
 using PageMicroservice.UnitTest.Fakes;
 using Xunit;
 

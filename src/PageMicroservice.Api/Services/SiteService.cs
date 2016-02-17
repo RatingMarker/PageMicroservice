@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using PageMicroservice.Data.Repositories;
-using PageMicroservice.Models;
+using PageMicroservice.Api.Models;
+using PageMicroservice.Api.Repositories;
 
-namespace PageMicroservice.Services
+namespace PageMicroservice.Api.Services
 {
     public interface ISiteService
     {
@@ -16,10 +16,10 @@ namespace PageMicroservice.Services
 
     public class SiteService: ISiteService
     {
-        private readonly ISiteRepository siteRepository;
         private readonly IPageRepository pageRepository;
+        private readonly ISiteRepository siteRepository;
 
-        public SiteService(ISiteRepository siteRepository,IPageRepository pageRepository)
+        public SiteService(ISiteRepository siteRepository, IPageRepository pageRepository)
         {
             this.siteRepository = siteRepository;
             this.pageRepository = pageRepository;

@@ -5,8 +5,8 @@ using AutoMapper;
 using Nancy;
 using Nancy.ModelBinding;
 using PageMicroservice.Api.Models;
-using PageMicroservice.Models;
-using PageMicroservice.Services;
+using PageMicroservice.Api.Services;
+using PageMicroservice.Api.ViewModels;
 
 namespace PageMicroservice.Api.Controllers
 {

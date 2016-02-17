@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace PageMicroservice.Data.Infrastructure
+namespace PageMicroservice.Api.Infrastructure
 {
     public interface IRepository<T> where T: class
     {

@@ -1,7 +1,7 @@
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
-using PageMicroservice.Data.Contexts;
-using PageMicroservice.Data.Infrastructure;
+using PageMicroservice.Api.Contexts;
+using PageMicroservice.Api.Infrastructure;
 
 namespace PageMicroservice.UnitTest.Fakes
 {

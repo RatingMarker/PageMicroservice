@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace PageMicroservice.Api.Models
+﻿namespace PageMicroservice.Api.ViewModels
 {
     public class SiteViewModel
     {

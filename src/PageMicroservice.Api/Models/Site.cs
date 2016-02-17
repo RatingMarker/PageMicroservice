@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace PageMicroservice.Models
+namespace PageMicroservice.Api.Models
 {
     public class Site
     {

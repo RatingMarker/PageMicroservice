@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using PageMicroservice.Api.Models;
-using PageMicroservice.Models;
+using PageMicroservice.Api.ViewModels;
 using Xunit;
 
 namespace PageMicroservice.UnitTest.Mappers

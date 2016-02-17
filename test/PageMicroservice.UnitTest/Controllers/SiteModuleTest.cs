@@ -4,8 +4,8 @@ using Moq;
 using Nancy;
 using Nancy.Testing;
 using PageMicroservice.Api.Controllers;
-using PageMicroservice.Models;
-using PageMicroservice.Services;
+using PageMicroservice.Api.Models;
+using PageMicroservice.Api.Services;
 using Xunit;
 
 namespace PageMicroservice.UnitTest.Controllers

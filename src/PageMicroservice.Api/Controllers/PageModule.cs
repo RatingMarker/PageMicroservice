@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
+using Mapster;
 using Nancy;
 using Nancy.ModelBinding;
+using NLog;
 using PageMicroservice.Api.Models;
 using PageMicroservice.Api.Services;
 using PageMicroservice.Api.ViewModels;
@@ -12,42 +12,50 @@ namespace PageMicroservice.Api.Controllers
 {
     public class PageModule: NancyModule
     {
-        private readonly IPageService pageService;
-        private readonly IMapper mapper;
-
-        public PageModule(IPageService pageService,IMapper mapper): base("/pages")
+        public PageModule(
+            IPageService pageService,
+            IAdapter adapter,
+            ILogger logger): base("/api/pages")
         {
-            if (pageService == null)
-            {
-                throw new ArgumentNullException(nameof(pageService));
-            }
-            if (mapper == null)
-            {
-                throw new ArgumentNullException(nameof(mapper));
-            }
-
-            this.pageService = pageService;
-            this.mapper = mapper;
-
             Get["/"] = _ =>
             {
                 var pages = pageService.GetAll().ToList();
-                var pagesViewModel = mapper.Map<IEnumerable<Page>, IEnumerable<PageViewModel>>(pages);
+                var pagesViewModel = adapter.Adapt<IEnumerable<PageViewModel>>(pages);
                 return pagesViewModel;
             };
 
             Get["/{id}"] = parameter =>
             {
                 var page = pageService.GetById(parameter.id);
-                return page != null ? mapper.Map<Page, PageViewModel>(page) : HttpStatusCode.NotFound;
+                return page != null ? adapter.Adapt<PageViewModel>(page) : HttpStatusCode.NotFound;
             };
 
             Post["/"] = _ =>
             {
-                var page = this.Bind<Page>();
-                page = pageService.Add(page);
-                var pageViewModel = mapper.Map<Page, PageViewModel>(page);
+                var pageViewModel = this.Bind<PageViewModel>();
+
+                var page = pageService.Add(adapter.Adapt<Page>(pageViewModel));
+                pageViewModel = adapter.Adapt<PageViewModel>(page);
                 return pageViewModel;
+            };
+
+            Post["/insert"] = _ =>
+            {
+                var pagesViewModel = this.Bind<IEnumerable<PageViewModel>>();
+
+                var pages = adapter.Adapt<IEnumerable<Page>>(pagesViewModel);
+
+                logger.Debug(pages.Count());
+
+                int countSaved = pageService.AddRange(pages);
+
+                var counter = new CounterViewModel()
+                {
+                    Count = pagesViewModel.Count(),
+                    Saved = countSaved
+                };
+
+                return counter;
             };
 
             Put["/{id}"] = parameter =>
@@ -60,16 +68,9 @@ namespace PageMicroservice.Api.Controllers
 
             Delete["/{id}"] = parameter =>
             {
-                var page = new Page() { PageId = parameter.id };
+                var page = new Page() {PageId = parameter.id};
                 bool isDeleted = pageService.Remove(page);
                 return isDeleted ? HttpStatusCode.OK : HttpStatusCode.NotFound;
-            };
-
-            Post["/insert"] = _ =>
-            {
-                //var pages = this.Bind<IEnumerable<Page>>();
-                //pageService.Insert(pages);
-                return HttpStatusCode.NotImplemented;
             };
         }
     }

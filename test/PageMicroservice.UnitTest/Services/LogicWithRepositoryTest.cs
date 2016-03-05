@@ -31,7 +31,7 @@ namespace PageMicroservice.UnitTest.Services
 
             var page = new Page()
             {
-                Uri = "http://lenta.ru"
+                Url = "http://lenta.ru"
             };
 
             var site = new Site()
@@ -76,7 +76,7 @@ namespace PageMicroservice.UnitTest.Services
             Assert.NotNull(result);
             Assert.NotEqual(site.Name, result.Name);
             Assert.NotNull(result.Pages);
-            Assert.Equal(page.Uri, result.Pages.FirstOrDefault().Uri);
+            Assert.Equal(page.Url, result.Pages.FirstOrDefault().Url);
         }
     }
 }

@@ -41,13 +41,13 @@ namespace PageMicroservice.UnitTest.Controllers
                     {
                         new Page()
                         {
-                            Uri = "http://lenta.ru/",
+                            Url = "http://lenta.ru/",
                             FoundDate = DateTime.Now.AddDays(-1),
                             LastScanDate = DateTime.Now
                         },
                         new Page()
                         {
-                            Uri = "http://lenta.ru/news/1",
+                            Url = "http://lenta.ru/news/1",
                             FoundDate = DateTime.Now.AddDays(-1),
                             LastScanDate = DateTime.Now
                         }

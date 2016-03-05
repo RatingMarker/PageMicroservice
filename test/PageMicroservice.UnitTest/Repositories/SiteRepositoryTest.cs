@@ -23,7 +23,7 @@ namespace PageMicroservice.UnitTest.Repositories
             //arrange
             var page = new Page()
             {
-                Uri = "http://lenta.ru"
+                Url = "http://lenta.ru"
             };
 
             var site = new Site()
@@ -50,7 +50,7 @@ namespace PageMicroservice.UnitTest.Repositories
             Assert.Equal(site.SiteId, result.SiteId);
             Assert.Equal(siteUpdate.Name, result.Name);
             //Assert.NotNull(result.Pages);
-            //Assert.Equal(page.Uri, result.Pages.First().Uri);
+            //Assert.Equal(page.Url, result.Pages.First().Url);
             
             
         }

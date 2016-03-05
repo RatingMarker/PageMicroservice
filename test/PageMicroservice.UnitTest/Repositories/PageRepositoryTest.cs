@@ -28,19 +28,19 @@ namespace PageMicroservice.UnitTest.Repositories
                 PageId = 1,
                 FoundDate = DateTime.Now,
                 LastScanDate = DateTime.Now,
-                Uri = "http://lenta.ru"
+                Url = "http://lenta.ru"
             };
 
             var pageUpdate = new Page()
             {
                 PageId = 1,
-                Uri = "http://lenta.ru/news"
+                Url = "http://lenta.ru/news"
             };
 
             //act
             pageRepository.Add(page);
 
-            page.Uri = pageUpdate.Uri;
+            page.Url = pageUpdate.Url;
 
             pageRepository.Update(page);
 
@@ -49,7 +49,7 @@ namespace PageMicroservice.UnitTest.Repositories
             //assert
             Assert.NotNull(result);
             Assert.Equal(page.PageId, result.PageId);
-            Assert.Equal(page.Uri, result.Uri);
+            Assert.Equal(page.Url, result.Url);
             Assert.Equal(page.FoundDate, result.FoundDate);
             Assert.Equal(page.LastScanDate, result.LastScanDate);
         }

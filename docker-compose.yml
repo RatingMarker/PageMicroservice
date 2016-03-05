@@ -1,0 +1,23 @@
+webapi:
+ build: .
+ ports:
+  - "5010:5010"
+ links: 
+  - db:postgres
+ volumes:
+  - ~/microservices/pagemicroservice.api:/usr/src/app
+db:
+ restart: always
+ image: postgres:latest
+ volumes_from: 
+  - data
+ environment:
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: admin
+  POSTGRES_DB: PageMicroservice
+data:
+ restart: always
+ image: postgres:latest
+ volumes:
+  - ~/data:/var/lib/postgresql
+ command: "true"

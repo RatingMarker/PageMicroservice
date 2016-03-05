@@ -1,0 +1,9 @@
+./src/pagemicroservice/bin*
+./.git
+./.vs
+artifacts
+
+**/init.sql
+**/log.txt
+./.gitattributes
+./.gitignore

@@ -10,7 +10,7 @@ namespace PageMicroservice.Api.Repositories
 {
     public interface IPageRepository: IRepository<Page>
     {
-        void Insert(IEnumerable<Page> pages);
+        int AddRange(IEnumerable<Page> pages);
     }
 
     public class PageRepository: IPageRepository
@@ -43,7 +43,7 @@ namespace PageMicroservice.Api.Repositories
         {
             using (var context = contextFactory.Get())
             {
-                return context.Pages.Where(where).ToList();
+                return context.Pages.Where(where).Take(500).ToList();
             }
         }
 
@@ -51,9 +51,9 @@ namespace PageMicroservice.Api.Repositories
         {
             using (var context = contextFactory.Get())
             {
-                var site = context.Pages.Add(entity).Entity;
+                var page = context.Pages.Add(entity).Entity;
                 context.SaveChanges();
-                return site;
+                return page;
             }
         }
 
@@ -96,13 +96,17 @@ namespace PageMicroservice.Api.Repositories
             return isDeleted;
         }
 
-        public void Insert(IEnumerable<Page> pages)
+        public int AddRange(IEnumerable<Page> pages)
         {
+            int countSaved = 0;
+
             using (var context = contextFactory.Get())
             {
                 context.AddRange(pages);
-                context.SaveChangesAsync();
+                countSaved += context.SaveChanges();
             }
+
+            return countSaved;
         }
     }
 }

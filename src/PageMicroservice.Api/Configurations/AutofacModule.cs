@@ -1,8 +1,10 @@
-﻿using System.Reflection;
-using Autofac;
+﻿using Autofac;
+using Mapster;
 using Microsoft.Extensions.Configuration;
+using NLog;
 using PageMicroservice.Api.Infrastructure;
-using Module = Autofac.Module;
+using PageMicroservice.Api.Repositories;
+using PageMicroservice.Api.Services;
 
 namespace PageMicroservice.Api.Configurations
 {
@@ -12,7 +14,6 @@ namespace PageMicroservice.Api.Configurations
         {
             var config = new ConfigurationBuilder();
             config.AddJsonFile("config.json");
-
             Configuration = config.Build();
         }
 
@@ -20,30 +21,42 @@ namespace PageMicroservice.Api.Configurations
 
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterModule<AutoMapperModule>();
-
+            RegistryMapper(builder);
+            RegistryLogging(builder);
             RegistryRepositories(builder);
             RegistryServices(builder);
         }
 
+        private void RegistryMapper(ContainerBuilder builder)
+        {
+            builder.RegisterType<Adapter>().As<IAdapter>();
+        }
+
         private void RegistryRepositories(ContainerBuilder builder)
         {
-            builder.Register(c => new ContextFactory(Configuration["Data:DefaultConnection:ConnectionString"]))
+            builder.Register(
+                c =>
+                {
+                    var contextFactory = new ContextFactory(
+                        Configuration["Data:DefaultConnection:ConnectionString"]);
+                    return contextFactory;
+                })
                    .As<IContextFactory>()
                    .InstancePerLifetimeScope();
 
-            builder.RegisterAssemblyTypes(Assembly.Load("PageMicroservice.Api.Repositories"))
-                   .Where(t => t.Name.EndsWith("Repository"))
-                   .AsImplementedInterfaces()
-                   .InstancePerLifetimeScope();
+            builder.RegisterType<SiteRepository>().As<ISiteRepository>();
+            builder.RegisterType<PageRepository>().As<IPageRepository>();
         }
 
         private void RegistryServices(ContainerBuilder builder)
         {
-            builder.RegisterAssemblyTypes(Assembly.Load("PageMicroservice.Api.Services"))
-                   .Where(t => t.Name.EndsWith("Service"))
-                   .AsImplementedInterfaces()
-                   .InstancePerLifetimeScope();
+            builder.RegisterType<SiteService>().As<ISiteService>();
+            builder.RegisterType<PageService>().As<IPageService>();
+        }
+
+        private void RegistryLogging(ContainerBuilder builder)
+        {
+            builder.Register(c => LogManager.GetLogger(GetType().Namespace)).As<ILogger>();
         }
     }
 }

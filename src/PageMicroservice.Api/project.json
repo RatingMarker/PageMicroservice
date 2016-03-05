@@ -6,17 +6,18 @@
   "dependencies": {
     "Autofac": "4.0.0-rc1-177",
     "Autofac.Extensions.DependencyInjection": "4.0.0-rc1-177",
-    "Automapper": "4.2.0",
     "Entityframework.Commands": "7.0.0-rc1-final",
     "EntityFramework7.Npgsql": "3.1.0-rc1-3",
-    "Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
+    "EntityFramework7.Npgsql.Design": "3.1.0-rc1-5",
+    "Mapster": "2.1.2",
     "Microsoft.AspNet.Owin": "1.0.0-rc1-final",
-    "Microsoft.AspNet.Server.IIS": "1.0.0-beta7",
     "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final",
     "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",
-    "Moq": "4.2.1510.2205",
+    "Microsoft.Extensions.Logging": "1.0.0-rc1-final",
     "Nancy": "1.4.3",
-    "Nancy.Bootstrappers.Autofac": "1.4.1"
+    "Nancy.Bootstrappers.Autofac": "1.4.1",
+    "NLog": "4.4.0-alpha1",
+    "NLog.Framework.logging": "1.0.0-rc1-final"
   },
   "exclude": [
     "wwwroot",

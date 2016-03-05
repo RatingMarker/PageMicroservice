@@ -11,7 +11,7 @@ namespace PageMicroservice.Api.Services
         Page Add(Page page);
         bool Update(Page page);
         bool Remove(Page page);
-        void Insert(IEnumerable<Page> pages);
+        int AddRange(IEnumerable<Page> pages);
     }
 
     public class PageService: IPageService
@@ -33,9 +33,9 @@ namespace PageMicroservice.Api.Services
 
         public bool Remove(Page page) => pageRepository.Delete(page);
 
-        public void Insert(IEnumerable<Page> pages)
+        public int AddRange(IEnumerable<Page> pages)
         {
-            pageRepository.Insert(pages);
+            return pageRepository.AddRange(pages);
         }
     }
 }

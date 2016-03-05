@@ -11,7 +11,7 @@ namespace PageMicroservice.Api.Infrastructure
 
     public class ContextFactory: IContextFactory
     {
-        private readonly DbContextOptions<PageContext> options; 
+        private readonly DbContextOptions<PageContext> options;
 
         public ContextFactory(string connectString)
         {

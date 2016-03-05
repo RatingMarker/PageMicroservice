@@ -13,9 +13,6 @@ namespace PageMicroservice.Api.Infrastructure
                 {
                     map.HasKey(s => s.PageId);
 
-                    map.Property(s => s.PageId)
-                       .ValueGeneratedNever();
-
                     map.HasOne(s => s.Site)
                        .WithMany(s => s.Pages)
                        .HasForeignKey(s => s.SiteId)
@@ -35,9 +32,6 @@ namespace PageMicroservice.Api.Infrastructure
                 map =>
                 {
                     map.HasKey(s => s.SiteId);
-
-                    map.Property(s => s.SiteId)
-                       .ValueGeneratedNever();
 
                     map.HasMany(s => s.Pages)
                        .WithOne().OnDelete(DeleteBehavior.Cascade);
